@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="test">
+    <test name="login">
+        <classes>
+            <class name="com.course.testng.Suite.SuiteConfig"></class>
+            <class name="com.course.testng.Suite.LoginTest"></class>
+        </classes>
+    </test>
+    <test name="pay">
+        <classes>
+            <class name="com.course.testng.Suite.SuiteConfig"></class>
+            <class name="com.course.testng.Suite.PayTest"></class>
+        </classes>
+    </test>
+
+
+</suite>

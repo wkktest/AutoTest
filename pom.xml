@@ -10,8 +10,20 @@
 
     <modules>
         <module>Chapter5</module>
+        <module>Chapter6</module>
     </modules>
 
+    <dependencies>
+        <dependency>
+            <!--
+            <version>RELEASE</version>
+            <scope>compile</scope>
+            -->
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>6.10</version>
 
+        </dependency>
+    </dependencies>
 
 </project>

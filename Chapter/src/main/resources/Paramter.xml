@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="test">
+    <test name="param">
+        <classes>
+            <class name="com.course.testng.Paramter.ParamterTest"/>
+            <parameter name="name" value="test"/>
+            <parameter name="age" value="12"/>
+        </classes>
+    </test>
+
+</suite>

@@ -1,27 +1,26 @@
-package com.course.testng.Suite;
+package com.course.testng.suite;
 
-import org.testng.annotations.AfterSuite;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeSuite;
-import org.testng.annotations.BeforeTest;
+import org.testng.annotations.*;
 
 public class SuiteConfig {
 
     @BeforeSuite
-    public void beforeSuit(){
-        System.out.println("before  Suite 运行了");
+    public void beforeSuite(){
+        System.out.println("before suite运行啦");
     }
+
     @AfterSuite
-    public void afterSuit(){
-        System.out.println("after   Suite 运行了");
+    public  void aftersuite(){
+        System.out.println("after suite 运行啦");
     }
 
     @BeforeTest
-    public void BeforeTest(){
-        System.out.println("BeforeTest  运行了");
+    public void beforeTest(){
+        System.out.println("beforeTest");
     }
+
     @AfterTest
-    public void AfterTest(){
-        System.out.println("AfterTest 运行了");
+    public void afterTest(){
+        System.out.println("afterTest");
     }
 }

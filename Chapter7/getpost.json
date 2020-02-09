@@ -1,0 +1,226 @@
+[
+  {
+    "description": "模拟一个没有参数 的get",
+    "request": {
+      "uri": "/getdemo",
+      "method": "get"
+    },
+    "response": {
+      "text": "这是一个没有参数的get请求",
+      "headers":{"Content-Type":"text/html;charset=bgk"},
+
+      "status":200
+    }
+  },
+
+  {
+    "description":"模拟一个带参数 的get",
+    "request":{
+      "uri":"/getwithparam",
+      "method":"get",
+      "queries":{
+        "name":"hawei",
+        "age":"9"
+      }
+    },
+    "response":{
+      "text":"我胡汉三出来了））））））））））））））））",
+      "headers":{"Content-Type":"text/html;charset=bgk"},
+      "status":200
+    }
+  },
+
+  {
+    "description":"这是一个带cokkes的get",
+    "request":{
+      "uri":"/get/with/cookies",
+      "method":"get",
+      "cookies":{
+        "login":"true"
+      }
+    },
+    "response":{
+      "text":"这是一个需要携带cookies的才能访问的get请求",
+      "headers":{"Content-Type":"text/html;charset=bgk"}
+    }
+  },
+
+
+  {
+    "description": "模拟一个post请求",
+    "request": {
+      "uri": "/postdemo",
+      "method": "post"
+    },
+    "response": {
+      "text": "这是一个post请求",
+      "headers":{"Content-Type":"text/html;charset=bgk"}
+    }
+  },
+
+  {
+    "description": "模拟一个带参数的post请求",
+    "request": {
+      "uri": "/postwithparam",
+      "method": "post",
+      "forms":{
+        "name":"san",
+        "sex":"man"
+      }
+    },
+    "response": {
+      "text": "这是一个带参数的post请求返回",
+      "headers":{"Content-Type":"text/html;charset=bgk"},
+      "status":200
+    }
+  },
+
+  {
+    "description":"模拟一个无参的cookies post请求",
+    "request":{
+      "uri":"/post/noparam/with/cookies",
+      "method":"post",
+      "cookies":{
+        "login":"true"
+      }
+    },
+    "response":{
+      "text":"这是一个无参的cookies post的请求返回",
+      "headers":{"Content-Type":"text/html;charset=bgk"}
+    }
+
+  },
+
+  {
+    "description": "模拟一个有参的cookies post请求",
+    "request": {
+      "uri": "/post/param/with/cookies",
+      "method": "post",
+      "cookies": {
+        "login": "true"
+      },
+      "forms":{
+        "name":"txtname",
+        "age":"1"
+      }
+    },
+    "response": {
+      "text": "这是一个有参的cookies post的请求返回",
+      "headers": {
+        "Content-Type": "text/html;charset=bgk"
+      }
+    }
+  },
+
+
+  {
+    "description": "模拟一个无cookies post  json请求",
+    "request": {
+      "uri": "/post/json/with/nocookies",
+      "method": "post",
+      "json":{
+        "name":"jsonname",
+        "age":"1"
+      }
+    },
+    "response": {
+      "json":{
+        "jsonname":"success",
+        "status":"1"
+      },
+      "headers": {
+        "Content-Type": "text/html;charset=bgk"
+      }
+    }
+  },
+
+  {
+    "description": "模拟一个有参的cookies post  json请求",
+    "request": {
+      "uri": "/post/json/with/cookies",
+      "method": "post",
+      "cookies": {
+        "login": "true"
+      },
+      "json":{
+        "name":"jsonname",
+        "age":"1"
+      }
+    },
+    "response": {
+      "json":{
+        "jsonname":"success",
+        "status":"1"
+      },
+      "headers": {
+        "Content-Type": "text/html;charset=bgk"
+      }
+    }
+  },
+
+  {
+    "description": "模拟一个无cookies   post  headers json请求",
+    "request": {
+      "uri": "/post/headers/with/nocookies",
+      "method": "post",
+      "headers":{
+        "content-type":"application-json"
+      },
+      "cookies":{
+        "login":"true"
+      },
+      "json":{
+        "name":"jsonname",
+        "age":"1"
+      }
+    },
+    "response": {
+      "json":{
+        "jsonname":"success",
+        "status":"1"
+      },
+      "headers": {
+        "Content-Type": "text/html;charset=bgk"
+      }
+    }
+  },
+
+
+  {
+    "description":"重定向百度的请求",
+    "request":{
+      "uri":"/redirect"
+    },
+    "redirectTo":"https://www.baidu.com"
+  },
+
+
+  {
+    "description":"重定向到自己的一个网页 的请求",
+    "request":{
+      "uri":"/redirect/topath"
+    },
+    "redirectTo":"/redirect/new"
+  },
+
+  {
+    "description":"这是被重定向的请求",
+    "request":{
+      "uri":"/redirect/new"
+    },
+    "response":{
+      "text":"重定向 成功 success",
+      "headers":{
+        "Content-Type":"text/html;charset=bgk"
+      }
+    }
+  }
+
+
+
+
+
+
+
+
+]

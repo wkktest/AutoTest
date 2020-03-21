@@ -12,10 +12,7 @@
       "text":"恭喜你获得cookies信息成功",
       "headers":{"Content-Type":"text/html;charset=gbk"}
     }
-
-
   },
-
 
 
   {
@@ -28,9 +25,14 @@
       }
     },
     "response":{
-      "text":"这是一个需要携带cookies信息才能访问的get请求"
+      "text":"这是一个需要携带cookies信息才能访问的get请求",
+      "headers":{"Content-Type":"text/html;charset=gbk"}
     }
   },
+
+
+
+
   {
     "description":"这是一个带cookies信息的post请求",
     "request":{
@@ -49,7 +51,8 @@
       "json":{
         "huhansan":"success",
         "status":"1"
-      }
+      },
+      "headers":{"Content-Type":"text/html;charset=gbk"}
     }
   }
 

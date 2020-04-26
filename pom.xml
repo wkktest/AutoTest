@@ -40,6 +40,9 @@
         <module>Chapter6</module>
         <module>Chapter9</module>
         <module>Chapter10</module>
+        <module>Chapter11</module>
+        <module>Chapter12</module>
+        <module>Chapter13</module>
 
     </modules>
 
@@ -70,7 +73,7 @@
         <dependency>
             <groupId>org.apache.httpcomponents</groupId>
             <artifactId>httpclient</artifactId>
-            <version>4.1.2</version>
+            <!--<version>4.1.2</version>-->
         </dependency>
 
         <dependency>
@@ -78,5 +81,7 @@
             <artifactId>json</artifactId>
             <version>20170516</version>
         </dependency>
+
+
     </dependencies>
 </project>

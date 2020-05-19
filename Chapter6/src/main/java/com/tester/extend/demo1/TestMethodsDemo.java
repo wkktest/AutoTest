@@ -1,8 +1,12 @@
 package com.tester.extend.demo1;
 
-import org.junit.Assert;
+
+import org.testng.Assert;
 import org.testng.Reporter;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
+
+
 
 public class TestMethodsDemo {
 

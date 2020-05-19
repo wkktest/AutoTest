@@ -92,12 +92,7 @@ public class ExtentTestNGIReporterListener implements IReporter {
                     suiteTest.getModel().setStatus(Status.FAIL);
                 }
             }
-
         }
-//        for (String s : Reporter.getOutput()) {
-//            extent.setTestRunnerOutput(s);
-//        }
-
         extent.flush();
     }
 
@@ -109,15 +104,22 @@ public class ExtentTestNGIReporterListener implements IReporter {
         }
         ExtentHtmlReporter htmlReporter = new ExtentHtmlReporter(OUTPUT_FOLDER + FILE_NAME);
         // 设置静态文件的DNS
-        //怎么样解决cdn.rawgit.com访问不了的情况
         htmlReporter.config().setResourceCDN(ResourceCDN.EXTENTREPORTS);
-
         htmlReporter.config().setDocumentTitle("api自动化测试报告");
         htmlReporter.config().setReportName("api自动化测试报告");
         htmlReporter.config().setChartVisibilityOnOpen(true);
         htmlReporter.config().setTestViewChartLocation(ChartLocation.TOP);
         htmlReporter.config().setTheme(Theme.STANDARD);
         htmlReporter.config().setCSS(".node.level-1  ul{ display:none;} .node.level-1.active ul{display:block;}");
+//        // 设置系统信息样式：.card-panel.environment th:first-child{ width:30%;}
+//        htmlReporter.config().setCSS(
+//
+//                ".node.level-1  ul{ display:none;} .node.level-1.active ul{display:block;}  .card-panel.environment  th:first-child{ width:30%;}");
+//        // 移除按键监听事件
+//        htmlReporter.config().setJS("$(window).off(\"keydown\");");
+//        // 设置静态文件的DNS
+//        // 如果cdn.rawgit.com访问不了，可以设置为：ResourceCDN.EXTENTREPORTS或者ResourceCDN.GITHUB
+//        htmlReporter.config().setResourceCDN(ResourceCDN.EXTENTREPORTS);
         extent = new ExtentReports();
         extent.attachReporter(htmlReporter);
         extent.setReportUsesManualConfiguration(true);
@@ -167,9 +169,9 @@ public class ExtentTestNGIReporterListener implements IReporter {
                 }
                 //test.getModel().setDescription(description.toString());
                 //test = extent.createTest(result.getMethod().getMethodName());
-                for (String group : result.getMethod().getGroups())
+                for (String group : result.getMethod().getGroups()) {
                     test.assignCategory(group);
-
+                }
                 List<String> outputList = Reporter.getOutput(result);
                 for(String output:outputList){
                     //将用例的log输出报告中

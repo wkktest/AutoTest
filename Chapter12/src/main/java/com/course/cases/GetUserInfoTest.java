@@ -33,20 +33,15 @@ public class GetUserInfoTest {
         System.out.println(getUserInfoCase.toString());
         System.out.println(TestConfig.getUserInfoUrl);
 
-//        //下边为写完接口的代码
-//        JSONArray resultJson = getJsonResult(getUserInfoCase);
-//        /**
-//         * 下边三行可以先讲
-//         */
-//        Thread.sleep(2000);
-//        User user = session.selectOne(getUserInfoCase.getExpected(),getUserInfoCase);
-//        System.out.println("自己查库获取用户信息:"+user.toString());
-//        List userList = new ArrayList();
-//        userList.add(user);
-//        JSONArray jsonArray = new JSONArray(userList);
-//        System.out.println("获取用户信息:"+jsonArray.toString());
-//        System.out.println("调用接口获取用户信息:"+resultJson.toString());
-//        Assert.assertEquals(jsonArray,resultJson);
+        //下边为写完接口的代码
+        JSONArray resultJson = getJsonResult(getUserInfoCase);
+        Thread.sleep(5000);
+        User user = session.selectOne(getUserInfoCase.getExpected(),getUserInfoCase);
+        List userList = new ArrayList();
+        userList.add(user);
+        JSONArray jsonArray = new JSONArray(userList);
+        JSONArray jsonArray1 = new JSONArray(resultJson.getString(0));
+        Assert.assertEquals(jsonArray.toString(),jsonArray1.toString());
     }
 
 
@@ -67,10 +62,8 @@ public class GetUserInfoTest {
         CloseableHttpResponse response = TestConfig.httpclient.execute(post);
         //获取响应结果
         result = EntityUtils.toString(response.getEntity(),"utf-8");
-        System.out.println("调用接口result:"+result);
         List resultList = Arrays.asList(result);
         JSONArray array = new JSONArray(resultList);
-        System.out.println(array.toString());
         return array;
 
     }

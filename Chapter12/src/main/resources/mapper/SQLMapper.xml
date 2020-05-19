@@ -65,10 +65,10 @@
             </if>
 
         </trim>
-        ;
+
     </select>
 
-    <!--获取更新后的数据-->
+    <!-- ; 获取更新后的数据-->
     <select id="getUpdateUserInfo" parameterType="com.course.model.UpdateUserInfoCase" resultType="com.course.model.User">
         select * from user
         <trim prefix="WHERE" prefixOverrides="and">

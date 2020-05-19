@@ -6,18 +6,26 @@ import com.course.model.User;
 import com.course.utils.DatabaseUtil;
 
 import org.apache.http.HttpResponse;
+import org.apache.http.client.CookieStore;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
+import org.apache.http.impl.client.BasicCookieStore;
 import org.apache.http.impl.client.HttpClients;
+import org.apache.http.impl.cookie.BasicClientCookie;
 import org.apache.http.util.EntityUtils;
 import org.apache.ibatis.session.SqlSession;
 import org.json.JSONObject;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import javax.servlet.http.Cookie;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 
 public class UpdateUserInfoTest {
 
@@ -27,19 +35,15 @@ public class UpdateUserInfoTest {
         SqlSession session = DatabaseUtil.getSqlSession();
         UpdateUserInfoCase updateUserInfoCase = session.selectOne("updateUserInfoCase",1);
         System.out.println(updateUserInfoCase.toString());
+        System.out.println(updateUserInfoCase.getExpected());
         System.out.println(TestConfig.updateUserInfoUrl);
-
-//        //下边为写完接口的代码
-//        int result = getResult(updateUserInfoCase);
-//        /**
-//         * 下边这两行跟着测试的课讲
-//         */
-//        //获取更新后的结果
-//        Thread.sleep(2000);
-//        User user = session.selectOne(updateUserInfoCase.getExpected(),updateUserInfoCase);
-//        System.out.println(user.toString());
-//        Assert.assertNotNull(user);
-//        Assert.assertNotNull(result);
+        //下边为写完接口的代码
+        int result = getResult(updateUserInfoCase);
+        //获取更新后的结果
+        Thread.sleep(5000);
+        User user = session.selectOne(updateUserInfoCase.getExpected(),updateUserInfoCase);
+        Assert.assertNotNull(user);
+        Assert.assertNotNull(result);
 
     }
 
@@ -49,17 +53,13 @@ public class UpdateUserInfoTest {
         UpdateUserInfoCase updateUserInfoCase = session.selectOne("updateUserInfoCase",2);
         System.out.println(updateUserInfoCase.toString());
         System.out.println(TestConfig.updateUserInfoUrl);
-
-//        //下边为写完接口的代码
-//        int result = getResult(updateUserInfoCase);
-//        /**
-//         * 下边这两行跟着测试的课讲
-//         */
-//        Thread.sleep(2000);
-//        User user = session.selectOne(updateUserInfoCase.getExpected(),updateUserInfoCase);
-//        System.out.println(user.toString());
-//        Assert.assertNotNull(user);
-//        Assert.assertNotNull(result);
+        //下边为写完接口的代码
+        int result = getResult(updateUserInfoCase);
+        Thread.sleep(5000);
+        User user = session.selectOne(updateUserInfoCase.getExpected(),updateUserInfoCase);
+        System.out.println(user.toString());
+        Assert.assertNotNull(user);
+        Assert.assertNotNull(result);
     }
 
 
@@ -85,7 +85,6 @@ public class UpdateUserInfoTest {
         CloseableHttpResponse response = TestConfig.httpclient.execute(post);
         //获取响应结果
         result = EntityUtils.toString(response.getEntity(),"utf-8");
-        System.out.println(result);
         return Integer.parseInt(result);
     }
 

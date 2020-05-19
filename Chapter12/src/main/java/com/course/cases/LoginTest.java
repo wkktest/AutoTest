@@ -11,6 +11,7 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.cookie.Cookie;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.*;
+import org.apache.http.impl.cookie.BasicClientCookie;
 import org.apache.http.util.EntityUtils;
 import org.apache.ibatis.session.SqlSession;
 import org.json.JSONObject;
@@ -19,8 +20,7 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import java.io.IOException;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 public class LoginTest {
 
@@ -40,7 +40,6 @@ public class LoginTest {
         LoginCase loginCase = session.selectOne("loginCase",1);
         System.out.println(loginCase.toString());
         System.out.println(TestConfig.loginUrl);
-
         //下边的代码为写完接口的测试代码
         String result = getResult(loginCase);
         //处理结果，就是判断返回结果是否符合预期
@@ -53,7 +52,6 @@ public class LoginTest {
         LoginCase loginCase = session.selectOne("loginCase",2);
         System.out.println(loginCase.toString());
         System.out.println(TestConfig.loginUrl);
-
 //        下边的代码为写完接口的测试代码
         String result = getResult(loginCase);
 //        //处理结果，就是判断返回结果是否符合预期
@@ -71,6 +69,8 @@ public class LoginTest {
         //将参数信息添加到方法中
         StringEntity entity = new StringEntity(param.toString(), "utf-8");
         post.setEntity(entity);
+        //定义cook 存储cookies信息
+        TestConfig.store = new BasicCookieStore();
         //声明一个client对象，用来进行方法的执行,并设置cookies信息
         TestConfig.httpclient = HttpClients.custom().setDefaultCookieStore(TestConfig.store).build();
         //执行post的方法并得到响应结果
@@ -78,19 +78,12 @@ public class LoginTest {
         //就是判断返回结果是否符合预期
         int statusCode = response.getStatusLine().getStatusCode();
         String result = EntityUtils.toString(response.getEntity(), "utf-8");
+
         if (statusCode == 200) {
             System.out.println(result);
         } else {
             System.out.println("访问/login 接口失败");
         }
-
-//        //将返回的响应结果字符串转化为json对象
-//        JSONObject resultjson = new JSONObject(result);
-//        //获取到结果值
-//       CookieStore store = (CookieStore) resultjson;
-////        System.out.println(success);
-////        Assert.assertEquals("success", success);
-//       TestConfig.store = store;
         return result;
     }
 

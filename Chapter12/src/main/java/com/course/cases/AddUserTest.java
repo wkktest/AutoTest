@@ -5,6 +5,8 @@ import com.course.config.TestConfig;
 import com.course.model.AddUserCase;
 import com.course.model.User;
 import com.course.utils.DatabaseUtil;
+import com.course.utils.FastD;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
@@ -16,6 +18,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import java.io.IOException;
+
 
 public class AddUserTest {
 
@@ -30,22 +33,18 @@ public class AddUserTest {
 
 //        下边的代码为写完接口的测试代码
         String result = getResult(addUserCase);
-//        /**
-//         * 可以先讲
-//         */
-//        //查询用户看是否添加成功
-        Thread.sleep(2000);
+        //查询用户看是否添加成功
+        Thread.sleep(5000);
         User user = session.selectOne("addUser",addUserCase);
-        System.out.println(user.toString());
         //处理结果，就是判断返回结果是否符合预期
         Assert.assertEquals(addUserCase.getExpected(),result);
     }
-
 
     private String getResult(AddUserCase addUserCase) throws IOException {
         //下边的代码为写完接口的测试代码
         HttpPost post = new HttpPost(TestConfig.addUserUrl);
         JSONObject param = new JSONObject();
+        param.put("id",FastD.getint(100,9));
         param.put("userName",addUserCase.getUserName());
         param.put("password",addUserCase.getPassword());
         param.put("sex",addUserCase.getSex());
@@ -64,8 +63,8 @@ public class AddUserTest {
         CloseableHttpResponse response = TestConfig.httpclient.execute(post);
         //获取响应结果
         result = EntityUtils.toString(response.getEntity(),"utf-8");
-        if(response.getStatusLine().getStatusCode()==200){
-            return result;
+        if(response.getStatusLine().getStatusCode() == 200){
+            System.out.println(result);
         }else {
             System.out.println("请求错误：请检查数据：");
         }
